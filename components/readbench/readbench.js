@@ -18,13 +18,18 @@ const readBench = {
         console.log(readBench.sentences);
 
         //make <span>s into #text
-        readBench.sentences.forEach(function (sentence) {
-            var span = document.createElement("span");
+        for(let i = 0 ; i < readBench.sentences.length; i++){
+            const sentence = readBench.sentences[i];
+            const span = document.createElement("span");
             span.innerText = sentence;
+            //add event to read from the sentence
+            span.addEventListener("click", function(){
+                readBench.speak(i, false);
+            });
             document.getElementById("text").appendChild(span);
-        });
+        }
     },
-    speak: function (readingSentenceNo = 0) {
+    speak: function (readingSentenceNo = 0, goNext = true) {
         //Initialize
         readBench.stop();
 
@@ -45,7 +50,7 @@ const readBench = {
         }
         let next = function () {
             //console.log([readingSentenceNo, maxSentenceNo]);
-            if (readingSentenceNo < maxSentenceNo) {
+            if (readingSentenceNo < maxSentenceNo && goNext === true) {
                 readingSentenceNo++;
                 speakSentence();
             } else {

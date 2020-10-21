@@ -27,7 +27,13 @@ input[type="text"]{
 }
 
 #text span{
-	margin-right:5px;
+    margin-right:5px;
+    border-radius:3px;
+    cursor: pointer;
+}
+
+#text span:hover, #text span:active{
+    background:#ddd;
 }
 
 #text span.active{
