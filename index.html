@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadBench</title>
+    <link rel="stylesheet" href="components/materialize/materialize.min.css">
+    <link rel="stylesheet" href="components/material-icons/css/baseline.css">
+    <link rel="stylesheet" href="components/readbench/readbench.css">
+
+    <script src="components/materialize/materialize.min.js"></script>
+    <!--sbd is the library to split sentences-->
+    <script src="components/sbd/sbd.min.js"></script>
+    <script src="components/readbench/readbench.js"></script>
+</head>
+<body>
+    <nav class="white row">
+		<div class="nav-wrapper col s12 l8 xl6 offset-l2 offset-xl3">
+			<span class="brand-logo">
+				<img src="img/readbench.svg" class="hide-on-med-and-down">
+				<span class="black-text">ReadBench</span>
+			</span>
+			<ul class="right">
+				<li class="waves-effect">
+					<a href="https://github.com/SorutoProject/ReadBench/wiki/" target="_blank" class="black-text"><i class="material-icons md-help"></i></a>
+				</li>
+				<li class="waves-effect">
+					<a id="file-button" class="black-text"><i class="material-icons md-publish"></i></a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+    <main class="row">
+        <div id="controll" class="col s12 l8 xl6 offset-l2 offset-xl3 right-align">
+            <button class="btn-flat waves-effect" id="speak-button"><i class="material-icons md-play_arrow left"></i>読み上げる</button>
+            <!--<button class="btn-flat waves-effect" id="stop-button"><i class="material-icons md-stop left"></i>停止</button>-->
+        </div>
+        <div id="text" class="col s12 l8 xl6 offset-l2 offset-xl3"></div>
+    </main>
+</body>
+</html>

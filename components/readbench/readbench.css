@@ -1,0 +1,36 @@
+nav{
+    height:64px;
+    box-shadow: none !important;
+    -webkit-box-shadow:none !important;
+}
+main{
+    position:absolute;
+    top:64px;
+    left:0;
+    width:100%;
+    height:calc(100% - 64px);
+}
+input[type="text"]{
+    user-select: auto;
+}
+.nav-wrapper .brand-logo img {
+    height: 56px;
+    vertical-align: middle;
+}
+.nav-wrapper .brand-logo{
+    font-size:14pt;
+}
+
+#text{
+    font-size:14pt;
+    font-family: serif;
+}
+
+#text span{
+	margin-right:5px;
+}
+
+#text span.active{
+    background:#00b9cd;
+    color:#fff;
+}
