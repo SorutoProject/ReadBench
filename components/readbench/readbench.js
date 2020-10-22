@@ -26,10 +26,15 @@ const readBench = {
       span.innerText = sentence;
       //add event to read from the sentence
       span.addEventListener("click", function() {
-        readBench.speak(i, false);
+        if(span.classList.contains("active")){
+          readBench.stop();
+        }else{
+          readBench.speak(i, false);
+        }
       });
-      span.addEventListener("contextmenu", function(){
-        if(confirm("選択された文から、この文章の最後までを読み上げますか？")){
+      span.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+        if(confirm("選択した文:\n" + e.currentTarget.innerText + "\nから、この文章の最後までを読み上げますか？")){
           readBench.speak(i,true);
         }
       });
