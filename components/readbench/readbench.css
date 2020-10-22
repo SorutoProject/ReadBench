@@ -8,7 +8,6 @@ main{
     top:64px;
     left:0;
     width:100%;
-    height:calc(100% - 64px);
 }
 input[type="text"]{
     user-select: auto;
@@ -40,6 +39,7 @@ input[type="text"]{
     background:#00b9cd;
     color:#fff;
 }
+
 
 @media screen and (min-width:600px){
     /*toast shows at left bottom.*/
