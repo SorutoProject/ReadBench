@@ -40,3 +40,13 @@ input[type="text"]{
     background:#00b9cd;
     color:#fff;
 }
+
+@media screen and (min-width:600px){
+    /*toast shows at left bottom.*/
+    #toast-container {
+     top: auto !important;
+     right: auto !important;
+     bottom: 10px;
+     left:10px;
+    }
+}

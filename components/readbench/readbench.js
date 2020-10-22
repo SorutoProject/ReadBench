@@ -8,6 +8,7 @@
 const readBench = {
     //save the sentences array to use globally
     sentences:[],
+    forceStopFlag: false,
     loadPassage: function (passage) {
         //Initialize #text
         document.getElementById("text").innerHTML = "";
@@ -30,8 +31,6 @@ const readBench = {
         }
     },
     speak: function (readingSentenceNo = 0, goNext = true) {
-        //Initialize
-        readBench.stop();
 
         const maxSentenceNo = readBench.sentences.length - 1;
         let uttr = new SpeechSynthesisUtterance();
@@ -58,7 +57,12 @@ const readBench = {
             }
         }
         uttr.onend = function (e) {
-            next();
+            if(readBench.forceStopFlag === false){
+                next();
+            }else{
+              readBench.forceStopFlag = false;
+              readBench.resetHighlight();
+            }
         }
 
         //start speaking
@@ -66,8 +70,7 @@ const readBench = {
 
     },
     stop:function(){
-        speechSynthesis.cancel();
-        readBench.resetHighlight();
+        readBench.forceStopFlag = true;
     },
     resetHighlight: function(){
         document.querySelectorAll("div#text span").forEach(function (span) {
@@ -99,12 +102,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("speak-button").addEventListener("click", function(){
-        readBench.speak();
+        readBench.speak(0,true);
     });
 
-    /*document.getElementById("stop-button").addEventListener("click", function(){
+    document.getElementById("stop-button").addEventListener("click", function(){
         readBench.stop();
-    });*/
+        M.toast({
+          html:`現在読み上げ中のテキストが読み終わると停止します。`
+        })
+    });
 
     //load sample text
     readBench.loadPassage(`Please click the upload button and select a txt file to read.`);
