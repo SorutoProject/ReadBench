@@ -23,6 +23,10 @@ input[type="text"]{
 #text{
     font-size:14pt;
     font-family: serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #text span{
