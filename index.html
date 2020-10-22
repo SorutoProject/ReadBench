@@ -14,6 +14,24 @@
     <!--sbd is the library to split sentences-->
     <script src="components/sbd/sbd.min.js"></script>
     <script src="components/readbench/readbench.js"></script>
+
+    <!--PWA-->
+	<!--iOS-->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="ReadBench">
+	<link rel="apple-touch-icon" href="img/Assets.xcassets/AppIcon.appiconset/152.png">
+
+	<!--chrome, firefox-->
+	<link rel="manifest" href="manifest.json">
+	<script>
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker.register("pwa-worker.js").catch(function (e) {
+				console.error("ServiceWorker registration failed:", e);
+			});
+		}
+
+	</script>
 </head>
 <body>
     <nav class="white row">
