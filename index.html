@@ -51,9 +51,23 @@
 		</div>
 	</nav>
     <main class="row">
-        <div id="controll" class="col s12 l8 xl6 offset-l2 offset-xl3 right-align">
-            <button class="btn-flat waves-effect" id="speak-button"><i class="material-icons md-play_arrow left"></i>読み上げる</button>
-            <button class="btn-flat waves-effect" id="stop-button"><i class="material-icons md-stop left"></i>停止</button>
+        <div id="controll" class="col s12 l8 xl6 offset-l2 offset-xl3 row">
+            <div class="left-align input-field col s12">
+              <select id="speech-rate">
+                <option value="0.5">0.50（ゆっくり）</option>
+                <option value="0.75">0.75（少しゆっくり）</option>
+                <option value="0.85" selected>0.85（おすすめ）</option>
+                <option value="1">1.00（標準）</option>
+                <option value="1.25">1.25（少し速い）</option>
+                <option value="1.5">1.50（速い）</option>
+                <option value="1.75">1.75（とても速い）</option>
+              </select>
+              <label>読み上げ速度</label>
+            </div>
+            <div class="col s12 right-align">
+              <button class="btn-flat waves-effect" id="speak-button"><i class="material-icons md-play_arrow left"></i>読み上げる</button>
+              <button class="btn-flat waves-effect" id="stop-button"><i class="material-icons md-stop left"></i>停止</button>
+            </div>
         </div>
         <div class="col s12" style="height:10px;"></div>
         <div id="text" class="col s12 l8 xl6 offset-l2 offset-xl3"></div>

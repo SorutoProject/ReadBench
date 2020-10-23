@@ -26,16 +26,16 @@ const readBench = {
       span.innerText = sentence;
       //add event to read from the sentence
       span.addEventListener("click", function() {
-        if(span.classList.contains("active")){
+        if (span.classList.contains("active")) {
           readBench.stop();
-        }else{
+        } else {
           readBench.speak(i, false);
         }
       });
-      span.addEventListener("contextmenu", function(e){
+      span.addEventListener("contextmenu", function(e) {
         e.preventDefault();
-        if(confirm("選択した文:\n" + e.currentTarget.innerText + "\nから、この文章の最後までを読み上げますか？")){
-          readBench.speak(i,true);
+        if (confirm("選択した文:\n" + e.currentTarget.innerText + "\nから、この文章の最後までを読み上げますか？")) {
+          readBench.speak(i, true);
         }
       });
 
@@ -47,7 +47,7 @@ const readBench = {
       const maxSentenceNo = readBench.sentences.length - 1;
       let uttr = new SpeechSynthesisUtterance();
       uttr.lang = "en-US";
-      uttr.rate = 1.0;
+      uttr.rate = document.getElementById("speech-rate").value;
       let speakSentence = function() {
         const readingSentenceElem = document.querySelectorAll("div#text span")[readingSentenceNo];
         uttr.text = readingSentenceElem.textContent;
@@ -82,9 +82,9 @@ const readBench = {
     }
     if (speechSynthesis.speaking === true) {
       readBench.stop();
-      setTimeout(function(){
+      setTimeout(function() {
         startSpeak();
-      },250);
+      }, 250);
     } else {
       startSpeak();
     }
@@ -132,6 +132,44 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("stop-button").addEventListener("click", function() {
     readBench.stop();
   });
+  const storageAvailable = function(type) {
+    var storage;
+    try {
+      storage = window[type];
+      var x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+    } catch (e) {
+      return e instanceof DOMException && (
+          // everything except Firefox
+          e.code === 22 ||
+          // Firefox
+          e.code === 1014 ||
+          // test name field too, because code might not be present
+          // everything except Firefox
+          e.name === 'QuotaExceededError' ||
+          // Firefox
+          e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+        // acknowledge QuotaExceededError only if there's something already stored
+        (storage && storage.length !== 0);
+    }
+  }
+  document.getElementById("speech-rate").addEventListener("change", function(e) {
+    //save to localStorage
+    if(storageAvailable('localStorage')) localStorage.setItem("speech-rate", e.currentTarget.value);
+  });
+
+  //set user speech-rate setting if it was saved.
+  if(storageAvailable("localStorage")){
+    if(localStorage.getItem("speech-rate")){
+      document.getElementById("speech-rate").value = localStorage.getItem("speech-rate");
+    }else{
+      document.getElementById("speech-rate").value =　1;
+    }
+  }
+
+  M.AutoInit();
 
   //load sample text
   readBench.loadPassage(`Please click the upload button and select a txt file to read.`);
