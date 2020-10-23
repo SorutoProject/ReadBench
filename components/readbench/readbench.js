@@ -34,7 +34,7 @@ const readBench = {
       });
       span.addEventListener("contextmenu", function(e) {
         e.preventDefault();
-        if (confirm("選択した文:\n" + e.currentTarget.innerText + "\nから、この文章の最後までを読み上げますか？")) {
+        if (confirm("選択した文:\n" + e.currentTarget.innerText.trim() + "\nから、この文章の最後までを読み上げますか？")) {
           readBench.speak(i, true);
         }
       });
@@ -47,15 +47,17 @@ const readBench = {
       const maxSentenceNo = readBench.sentences.length - 1;
       let uttr = new SpeechSynthesisUtterance();
       uttr.lang = "en-US";
-      uttr.rate = document.getElementById("speech-rate").value;
       let speakSentence = function() {
         const readingSentenceElem = document.querySelectorAll("div#text span")[readingSentenceNo];
         uttr.text = readingSentenceElem.textContent;
+        uttr.rate = document.getElementById("speech-rate").value;
         document.querySelectorAll("div#text span").forEach(function(span) {
           span.classList.remove("active");
         });
 
         readingSentenceElem.classList.add("active");
+        //Scroll into viewport
+        readingSentenceElem.scrollIntoView();
 
         speechSynthesis.speak(uttr);
       }
@@ -117,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
       reader.onload = function() {
         readBench.loadPassage(reader.result);
         readBench.stop();
+
+        readBench.forceStopFlag = false;
       }
       reader.readAsText(e.target.files[0]);
     });
