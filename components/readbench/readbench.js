@@ -164,6 +164,33 @@ document.addEventListener("DOMContentLoaded", function() {
     if(storageAvailable('localStorage')) localStorage.setItem("speech-rate", e.currentTarget.value);
   });
 
+  document.getElementById("new-button").addEventListener("click", function(){
+    document.getElementById("new-modal-text").innerText = document.getElementById("text").innerText;
+    setTimeout(function(){
+      document.getElementById("new-modal-text").focus();
+    },250);
+  });
+
+  document.getElementById("new-modal-apply-button").addEventListener("click", function(){
+    readBench.loadPassage(document.getElementById("new-modal-text").innerText);
+  });
+
+  document.getElementById("new-modal-download-button").addEventListener("click", function(){
+    const text = document.getElementById("new-modal-text").innerText;
+    const link = document.createElement("a");
+    link.href = "data:text/plain, " + text;
+    //ファイル名を聞く
+    let fileName = prompt("ファイル名を入力してください。");
+    if(fileName !== null){
+        if(!fileName.match(/.*.txt$/)){
+          fileName+= ".txt";
+        }
+        link.setAttribute("download", fileName);
+        link.click();
+    }
+
+  });
+
   //set user speech-rate setting if it was saved.
   if(storageAvailable("localStorage")){
     if(localStorage.getItem("speech-rate")){
@@ -174,7 +201,4 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   M.AutoInit();
-
-  //load sample text
-  readBench.loadPassage(`Please click the upload button and select a txt file to read.`);
 });

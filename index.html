@@ -65,12 +65,27 @@
               <label>読み上げ速度</label>
             </div>
             <div class="col s12 right-align">
-              <button class="btn-flat waves-effect" id="speak-button"><i class="material-icons md-play_arrow left"></i>読み上げる</button>
-              <button class="btn-flat waves-effect" id="stop-button"><i class="material-icons md-stop left"></i>停止</button>
+              <a class="btn-flat waves-effect modal-trigger" id="new-button" href="#new-modal"><i class="material-icons md-keyboard left"></i>入力/編集</a>
+              <button class="btn-flat waves-effect" id="speak-button"><i class="material-icons md-play_arrow center"></i></button>
+              <button class="btn-flat waves-effect" id="stop-button"><i class="material-icons md-stop center"></i></button>
             </div>
         </div>
         <div class="col s12" style="height:10px;"></div>
-        <div id="text" class="col s12 l8 xl6 offset-l2 offset-xl3"></div>
+        <div id="text" class="col s12 l8 xl6 offset-l2 offset-xl3">
+          <div class="shadowText" data-text="開始するには、英文を入力するか、txtファイルをアップロードします。"></div>
+        </div>
     </main>
+
+    <!--modals-->
+    <div id="new-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <b>英文を入力...</b><br>読み上げる英文を入力してください<br>改行も利用できます
+        <div id="new-modal-text" contenteditable></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect btn-flat" id="new-modal-download-button">ダウンロード</a>
+      <a href="#!" class="modal-close waves-effect btn-flat" id="new-modal-apply-button">適用</a>
+    </div>
+    </div>
 </body>
 </html>

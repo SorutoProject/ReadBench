@@ -44,6 +44,20 @@ input[type="text"]{
     color:#fff;
 }
 
+.shadowText::before{
+  content: attr(data-text);
+  font-family: sans-serif;
+}
+
+#new-modal-text{
+  min-height:100px;
+  border-bottom:3px solid #aaa;
+  outline:none;
+}
+
+#new-modal-text:focus{
+  border-bottom: 3px solid #00b9cd;
+}
 
 @media screen and (min-width:600px){
     /*toast shows at left bottom.*/
