@@ -172,11 +172,11 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   document.getElementById("new-modal-apply-button").addEventListener("click", function(){
-    readBench.loadPassage(document.getElementById("new-modal-text").innerText);
+    readBench.loadPassage(document.getElementById("new-modal-text").value);
   });
 
   document.getElementById("new-modal-download-button").addEventListener("click", function(){
-    const text = document.getElementById("new-modal-text").innerText;
+    const text = document.getElementById("new-modal-text").value;
     const link = document.createElement("a");
     link.href = "data:text/plain, " + text;
     //ファイル名を聞く
